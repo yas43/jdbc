@@ -15,7 +15,7 @@ public class app {
        String password = "123456";
        try {
             connection = DriverManager.getConnection(url,username,password);
-           write_data();
+          update();
        } catch (SQLException e) {
            e.printStackTrace();
        }
@@ -72,4 +72,14 @@ public class app {
             e.printStackTrace();
         }
     }
+
+    private void update(){
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE clientes SET city='rennes' WHERE contactname='keshtdar'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

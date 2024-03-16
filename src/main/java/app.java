@@ -15,7 +15,7 @@ public class app {
        String password = "123456";
        try {
             connection = DriverManager.getConnection(url,username,password);
-           read_data();
+           write_data();
        } catch (SQLException e) {
            e.printStackTrace();
        }
@@ -57,6 +57,17 @@ public class app {
                 System.out.println("contact_name = "+ contact_name+"address = "+address+"city = "+city+"\n"+
                         "postal_code = "+postal_code+"county = "+country );
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void write_data(){
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO clientes (contactname,address,city,postalcode,country) " +
+                    "values ('jeferson','10 rue manson','rome','6215','italy')");
         } catch (SQLException e) {
             e.printStackTrace();
         }

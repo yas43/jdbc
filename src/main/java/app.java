@@ -1,6 +1,7 @@
 
 import java.sql.*;
 
+
 public class app {
     Connection connection;
     public static void main(String[] args)  {
@@ -9,14 +10,15 @@ public class app {
     }
 
    public void jdbcconection (){
-       String sql = "SELECT postalcode FROM clientes WHERE country='india'";
-       String url = "jdbc:postgresql://localhost:5432/test";
-       String username = "yaser";
-       String password = "123456";
+       String sql = "SELECT * FROM student";
+       String url = "jdbc:mysql://localhost:3306/openclassroom?useSSL=false";
+       String username = "root";
+       String password = "fa946342036ec59c2302";
        try {
-            connection = DriverManager.getConnection(url,username,password);
-          update();
-       } catch (SQLException e) {
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           connection = DriverManager.getConnection(url,username,password);
+           method();
+       } catch (Exception e) {
            e.printStackTrace();
        }
        finally {
@@ -29,15 +31,16 @@ public class app {
            }
        }
 
+
    }
 
     private void method() {
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM clientes;");
+            ResultSet rs = statement.executeQuery("SELECT * FROM student;");
             rs.next();
-            String contact_name = rs.getString(1);
-            System.out.println(contact_name);
+            String name = rs.getString(1);
+            System.out.println(name);
         } catch (SQLException e) {
             e.printStackTrace();
         }
